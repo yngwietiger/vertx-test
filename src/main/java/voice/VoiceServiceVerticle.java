@@ -45,11 +45,11 @@ public class VoiceServiceVerticle extends AbstractVerticle {
 //        Buffer key = vertx.fileSystem().readFileSync("/mykey.pem");
 //        Buffer cert = vertx.fileSystem().readFileSync("/mycert.pem");
 
-        String keyPath = "/Users/cbridges/Dev/vertx-test/cert2/file.pem";
-        String certPath = "/Users/cbridges/Dev/vertx-test/cert2/certificate.pem";
-
-//        String keyPath = config().getString("key.file");
-//        String certPath = config().getString("cert.file");
+//        String keyPath = "/Users/cbridges/Dev/vertx-test/cert2/file.pem";
+//        String certPath = "/Users/cbridges/Dev/vertx-test/cert2/certificate.pem";
+//
+        String keyPath = config().getString("key.file");
+        String certPath = config().getString("cert.file");
 
         logger.info("Key Path: " + keyPath);
         logger.info("Cert Path: " + certPath);
