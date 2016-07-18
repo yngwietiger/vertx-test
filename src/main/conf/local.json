@@ -1,5 +1,5 @@
 {
-  "http.port": 8080,
-  "key.file" : "/Users/cbridges/Dev/vertx-test/cert2/file.pem",
-  "cert.file" : "/Users/cbridges/Dev/vertx-test/cert2/certificate.pem"
+  "http.port": 443,
+  "key.file" : "/Users/cbridges/Dev/cert2/file.pem",
+  "cert.file" : "/Users/cbridges/Dev/cert2/certificate3.pem"
 }

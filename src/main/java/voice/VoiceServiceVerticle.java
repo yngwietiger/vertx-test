@@ -19,7 +19,7 @@ import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 
 public class VoiceServiceVerticle extends AbstractVerticle {
 
-    private static final Logger logger = LoggerFactory.getLogger(VoiceServiceVerticle2.class);
+    private static final Logger logger = LoggerFactory.getLogger(VoiceServiceVerticle.class);
 
     @Override
     public void start() {
