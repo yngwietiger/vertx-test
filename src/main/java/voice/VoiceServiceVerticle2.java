@@ -17,7 +17,7 @@ import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
 
 
-public class VoiceServiceVerticle extends AbstractVerticle {
+public class VoiceServiceVerticle2 extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(VoiceServiceVerticle2.class);
 
@@ -51,10 +51,10 @@ public class VoiceServiceVerticle extends AbstractVerticle {
 //        String keyPath = config().getString("key.file");
 //        String certPath = config().getString("cert.file");
 
-        logger.info("Key Path: " + keyPath);
-        logger.info("Cert Path: " + certPath);
+        System.out.println("Key Path: " + keyPath);
+        System.out.println("Cert Path: " + certPath);
 
-        options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyPath(keyPath).setCertPath(certPath));
+        options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyPath("/Users/cbridges/Dev/vertx-test/cert2/file.pem").setCertPath("/Users/cbridges/Dev/vertx-test/cert2/certificate.pem"));
         options.setSsl(true);
 
 //                .setKeyStoreOptions(
@@ -64,20 +64,20 @@ public class VoiceServiceVerticle extends AbstractVerticle {
 
         HttpServer server = vertx.createHttpServer(options);
         server.requestHandler(router::accept);
-//        server.listen(8080);
-        int port = config().getInteger("http.port");
+        server.listen(8080);
+//        int port = config().getInteger("http.port");
 //        int port = 8080;
 //
-        logger.info("HTTP Port: " + port);
-
-        server.listen(port);
+//        System.out.println("HTTP Port: " + port);
+//
+//        server.listen(port);
 
 
     }
 
     private SockJSHandler eventBusHandler() {
         BridgeOptions options = new BridgeOptions()
-                .addOutboundPermitted(new PermittedOptions().setAddressRegex("session\\.[0-9]+"));
+            .addOutboundPermitted(new PermittedOptions().setAddressRegex("session\\.[0-9]+"));
         return SockJSHandler.create(vertx).bridge(options, event -> {
             if (event.type() == BridgeEventType.SOCKET_CREATED) {
                 logger.info("A socket was created");
@@ -112,6 +112,6 @@ public class VoiceServiceVerticle extends AbstractVerticle {
 
     private StaticHandler staticHandler() {
         return StaticHandler.create()
-                .setCachingEnabled(false);
+            .setCachingEnabled(false);
     }
 }

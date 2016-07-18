@@ -1,0 +1,11 @@
+Generate RSA private key file
+
+openssl genrsa -out file.key 2048
+
+Convert key file to PKCS8 (because that's what vertx likes)
+
+openssl pkcs8 -topk8 -inform pem -in file.key -outform pem -nocrypt -out file.pem
+
+Generate certificate
+
+certgen2.sh

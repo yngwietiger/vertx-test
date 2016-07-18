@@ -1,5 +1,7 @@
 var session_id = 1;
-var host = '50.17.171.189';
+// var host = '50.17.171.189';
+var host = 'localhost';
+
 
 function init() {
     // loadCurrentPrice();
@@ -22,7 +24,7 @@ function init() {
 // };
 
 function registerHandlerForUpdateCurrentPriceAndFeed() {
-    var eventBus = new EventBus('http://' + host + ':8080/eventbus');
+    var eventBus = new EventBus('https://' + host + ':8080/eventbus');
     eventBus.onopen = function () {
         eventBus.registerHandler('session.' + session_id, function (error, message) {
             document.getElementById('last_command').innerHTML = JSON.parse(message.body).command;
@@ -47,7 +49,7 @@ function sendCommand() {
             }
         }
     };
-    xmlhttp.open("POST", "http://" + host + ":8080/api/voice/" + session_id);
+    xmlhttp.open("POST", "https://" + host + ":8080/api/voice/" + session_id);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify({command: newCommand}));
 };
