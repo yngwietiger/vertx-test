@@ -64,6 +64,7 @@ public class VoiceServiceVerticle extends AbstractVerticle {
         BridgeOptions options = new BridgeOptions()
                 .addOutboundPermitted(new PermittedOptions().setAddressRegex("session\\.[0-9]+"));
         return SockJSHandler.create(vertx).bridge(options, event -> {
+            System.out.println(">>>>> Received BridgeEvent: type: " + event.getClass().getCanonicalName());
             if (event.type() == BridgeEventType.SOCKET_CREATED) {
                 logger.info(">>>>> A socket was created: " + event.getRawMessage());
             }
