@@ -1,6 +1,6 @@
 var session_id = 1;
-// var host = '50.17.171.189';
-var host = 'localhost';
+ var host = '50.17.171.189';
+//var host = 'localhost';
 
 
 function init() {
