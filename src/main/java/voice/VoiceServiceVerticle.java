@@ -11,6 +11,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.ErrorHandler;
 import io.vertx.ext.web.handler.StaticHandler;
+import io.vertx.ext.web.handler.sockjs.BridgeEvent;
 import io.vertx.ext.web.handler.sockjs.BridgeEventType;
 import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
@@ -56,7 +57,7 @@ public class VoiceServiceVerticle extends AbstractVerticle {
                 .addOutboundPermitted(new PermittedOptions().setAddressRegex("session\\.[0-9]+"));
         return SockJSHandler.create(vertx).bridge(options, event -> {
             if (event.type() == BridgeEventType.SOCKET_CREATED) {
-                logger.info("A socket was created");
+                logger.info(">>>>> A socket was created: " + event.getRawMessage());
             }
             event.complete(true);
         });
