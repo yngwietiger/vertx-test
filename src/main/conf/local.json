@@ -1,5 +1,5 @@
 {
   "http.port": 443,
-  "key.file" : "/Users/cbridges/Dev/cert2/file.pem",
-  "cert.file" : "/Users/cbridges/Dev/cert2/certificate3.pem"
+  "key.file" : "/home/chris/Dev/cert2/file.pem",
+  "cert.file" : "/home/chris/Dev/cert2/certificate3.pem"
 }

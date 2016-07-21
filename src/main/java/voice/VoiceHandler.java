@@ -23,6 +23,7 @@ public class VoiceHandler {
         context.vertx().eventBus().publish("session." + sessionId, context.getBodyAsString());
         context.response()
                 .setStatusCode(200)
+                .putHeader("Access-Control-Allow-Origin", "*")
                 .end();
     }
 
