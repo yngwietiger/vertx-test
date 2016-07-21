@@ -2,6 +2,7 @@ package voice;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.speechlet.Session;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vertx.ext.web.RoutingContext;
 
@@ -29,6 +30,7 @@ public class AlexaHandler {
         String body = context.getBodyAsString();
 
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
         SpeechletRequestEnvelope requestEnvelope = null;
         try {
