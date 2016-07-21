@@ -24,7 +24,7 @@ function init() {
 // };
 
 function registerHandlerForUpdateCurrentPriceAndFeed() {
-    var eventBus = new EventBus('https://' + host + ':443/eventbus');
+    var eventBus = new EventBus('http://' + host + ':8080/eventbus');
     eventBus.onopen = function () {
         eventBus.registerHandler('session.' + session_id, function (error, message) {
             document.getElementById('last_command').innerHTML = JSON.parse(message.body).command;
@@ -49,7 +49,7 @@ function sendCommand() {
             }
         }
     };
-    xmlhttp.open("POST", "https://" + host + ":443/api/voice/" + session_id);
+    xmlhttp.open("POST", "http://" + host + ":8080/api/voice/" + session_id);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify({command: newCommand}));
 };

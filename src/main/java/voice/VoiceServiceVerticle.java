@@ -43,13 +43,21 @@ public class VoiceServiceVerticle extends AbstractVerticle {
         options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyPath(keyPath).setCertPath(certPath));
         options.setSsl(true);
 
-        HttpServer server = vertx.createHttpServer(options);
-        server.requestHandler(router::accept);
+        HttpServer httpsServer = vertx.createHttpServer(options);
+        httpsServer.requestHandler(router::accept);
 
         int port = config().getInteger("http.port");
         logger.info("HTTP Port: " + port);
 
-        server.listen(port);
+        httpsServer.listen(port);
+
+        HttpServer httpServer = vertx.createHttpServer(options);
+        httpsServer.requestHandler(router::accept);
+
+//        int port = config().getInteger("http.port");
+//        logger.info("HTTP Port: " + port);
+
+        httpServer.listen(8080);
     }
 
     private SockJSHandler eventBusHandler() {
