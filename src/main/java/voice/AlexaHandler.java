@@ -25,7 +25,7 @@ public class AlexaHandler {
 //        String sessionId = context.request().getParam("sessionId");
 
 //        System.out.println("Received command -> sessionId: " + sessionId);
-        System.out.println("Context.getBodyAsString(): " + context.getBodyAsString());
+        System.out.println("***** Context.getBodyAsString(): " + context.getBodyAsString());
 
         String body = context.getBodyAsString();
 
