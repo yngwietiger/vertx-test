@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f2b6efec-c7a8-41ba-8f61-156ed320a89b" name="Default" comment="change host">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java" afterPath="$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/voice/index.html" afterPath="$PROJECT_DIR$/src/main/resources/voice/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/voice/js/voice-commands.js" afterPath="$PROJECT_DIR$/src/main/resources/voice/js/voice-commands.js" />
     </list>
     <ignored path="my-first-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="VoiceServiceVerticle.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="VoiceServiceVerticle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.71845794">
+              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,11 +97,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="voice-commands.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="voice-commands.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/voice/js/voice-commands.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.77219623">
-              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="28" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -142,9 +140,9 @@
         <option value="$PROJECT_DIR$/src/main/java/voice/AlexaHandler.java" />
         <option value="$PROJECT_DIR$/src/main/resources/alexa-samples/sample.json" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java" />
         <option value="$PROJECT_DIR$/src/main/resources/voice/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/voice/js/voice-commands.js" />
+        <option value="$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java" />
       </list>
     </option>
   </component>
@@ -1190,12 +1188,12 @@
       <workItem from="1468776544404" duration="14166000" />
       <workItem from="1469065991623" duration="190000" />
       <workItem from="1469066222588" duration="3388000" />
-      <workItem from="1469107990931" duration="1768000" />
+      <workItem from="1469107990931" duration="1870000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19512000" />
+    <option name="totallyTimeSpent" value="19614000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1961" y="26" width="1867" height="1038" extended-state="0" />
@@ -1574,14 +1572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/voice/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.75">
@@ -1592,8 +1582,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/voice/js/voice-commands.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77219623">
-          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="28" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.71845794">
+          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
           <folding />
         </state>
       </provider>
