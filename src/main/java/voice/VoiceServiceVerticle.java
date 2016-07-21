@@ -51,7 +51,7 @@ public class VoiceServiceVerticle extends AbstractVerticle {
 
         httpsServer.listen(port);
 
-        HttpServer httpServer = vertx.createHttpServer(options);
+        HttpServer httpServer = vertx.createHttpServer();
         httpServer.requestHandler(router::accept);
 
 //        int port = config().getInteger("http.port");

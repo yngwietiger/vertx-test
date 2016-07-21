@@ -28,8 +28,8 @@
       <file leaf-file-name="VoiceServiceVerticle.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71845794">
-              <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.68341124">
+              <caret line="53" column="55" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -1188,12 +1188,12 @@
       <workItem from="1468776544404" duration="14166000" />
       <workItem from="1469065991623" duration="190000" />
       <workItem from="1469066222588" duration="3388000" />
-      <workItem from="1469107990931" duration="1870000" />
+      <workItem from="1469107990931" duration="2003000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19614000" />
+    <option name="totallyTimeSpent" value="19747000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1961" y="26" width="1867" height="1038" extended-state="0" />
@@ -1590,8 +1590,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/voice/VoiceServiceVerticle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71845794">
-          <caret line="55" column="0" selection-start-line="55" selection-start-column="0" selection-end-line="55" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.68341124">
+          <caret line="53" column="55" selection-start-line="53" selection-start-column="55" selection-end-line="53" selection-end-column="55" />
           <folding />
         </state>
       </provider>
