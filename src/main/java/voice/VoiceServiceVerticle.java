@@ -31,23 +31,8 @@ public class VoiceServiceVerticle extends AbstractVerticle {
 
         router.route().handler(StaticHandler.create("voice"));
 
-//        router.route().handler(staticHandler());
-
-//        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
-
-//        String keyFile = "/Users/cbridges/Dev/vertx-test/keystore/keystore.jks";
-        String keyFile = "/Users/cbridges/Dev/vertx-test/cert/certificate.pem";
-//        String keyFile = "/Users/cbridges/Dev/vertx-test/keystore/private-key.pem";
-
         HttpServerOptions options = new HttpServerOptions();
-//                .setUseAlpn(true)
-//                .setSsl(true);
-//        Buffer key = vertx.fileSystem().readFileSync("/mykey.pem");
-//        Buffer cert = vertx.fileSystem().readFileSync("/mycert.pem");
 
-//        String keyPath = "/Users/cbridges/Dev/vertx-test/cert2/file.pem";
-//        String certPath = "/Users/cbridges/Dev/vertx-test/cert2/certificate.pem";
-//
         String keyPath = config().getString("key.file");
         String certPath = config().getString("cert.file");
 
@@ -57,22 +42,13 @@ public class VoiceServiceVerticle extends AbstractVerticle {
         options.setPemKeyCertOptions(new PemKeyCertOptions().setKeyPath(keyPath).setCertPath(certPath));
         options.setSsl(true);
 
-//                .setKeyStoreOptions(
-//                        new JksOptions()
-//                                .setPath(keyFile)
-//                                .setPassword("password"));
-
         HttpServer server = vertx.createHttpServer(options);
         server.requestHandler(router::accept);
-//        server.listen(8080);
+
         int port = config().getInteger("http.port");
-//        int port = 8080;
-//
         logger.info("HTTP Port: " + port);
 
         server.listen(port);
-
-
     }
 
     private SockJSHandler eventBusHandler() {
@@ -91,6 +67,8 @@ public class VoiceServiceVerticle extends AbstractVerticle {
         VoiceRepository repository = new VoiceRepository(vertx.sharedData());
         VoiceValidator validator = new VoiceValidator(repository);
         VoiceHandler handler = new VoiceHandler(repository, validator);
+        AlexaHandler alexaHandler = new AlexaHandler(repository, validator);
+
 
         Router router = Router.router(vertx);
         router.route().handler(BodyHandler.create());
@@ -98,13 +76,12 @@ public class VoiceServiceVerticle extends AbstractVerticle {
         router.route().consumes("application/json");
         router.route().produces("application/json");
 
-//        router.route("/auctions/:id").handler(handler::initAuctionInSharedData);
-//        router.get("/auctions/:id").handler(handler::handleGetAuction);
         router.post("/voice/:sessionId").handler(handler::handleVoiceCommand);
+
+        router.post("/alexa").handler(alexaHandler::handleVoiceCommand);
 
         return router;
     }
-
 
     private ErrorHandler errorHandler() {
         return ErrorHandler.create(true);

@@ -1,0 +1,29 @@
+{
+  "session": {
+    "sessionId": "SessionId.aeeb99b9-a8fd-431a-ad2c-7e5f04b4eabf",
+    "application": {
+      "applicationId": "amzn1.echo-sdk-ams.app.1d03325e-1998-459d-afd7-7b49d68fc8c8"
+    },
+    "attributes": {},
+    "user": {
+      "userId": "amzn1.ask.account.AFP3ZWPOS2BGJR7OWJZ3DHPKMOMNWY4AY66FUR7ILBWANIHQN73QH6TPGFBKG6HRG4J6GLWNH73YMQQAISCMCWCQV6BVZKFX2DLHHQCAXZFCNRRVCE4R5YTUNI4CW4SGDFT45QZG3XDL7E6PD7DRXKYY7JIRQCMSWBYZC5E3FHHKWO5BOXSUTLISPZGRPN3IFF3UNDBGIQ32CYI"
+    },
+    "new": true
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "EdwRequestId.db5f531d-5d5f-4c82-938c-cbfc3de3ae8f",
+    "locale": "en-US",
+    "timestamp": "2016-07-21T02:19:58Z",
+    "intent": {
+      "name": "OpenLesson",
+      "slots": {
+        "Number": {
+          "name": "Number",
+          "value": "1"
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
