@@ -11,19 +11,22 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.ErrorHandler;
 import io.vertx.ext.web.handler.StaticHandler;
-import io.vertx.ext.web.handler.sockjs.BridgeEvent;
 import io.vertx.ext.web.handler.sockjs.BridgeEventType;
 import io.vertx.ext.web.handler.sockjs.BridgeOptions;
 import io.vertx.ext.web.handler.sockjs.PermittedOptions;
 import io.vertx.ext.web.handler.sockjs.SockJSHandler;
+import io.vertx.ext.web.handler.sockjs.SockJSHandlerOptions;
 
 
 public class VoiceServiceVerticle extends AbstractVerticle {
 
     private static final Logger logger = LoggerFactory.getLogger(VoiceServiceVerticle.class);
 
+    private static final String SOCKJS_0_3_4_MIN_JS = "sockjs.js";
+
     @Override
     public void start() {
+
         Router router = Router.router(vertx);
 
         router.route("/eventbus/*").handler(eventBusHandler());
@@ -61,13 +64,39 @@ public class VoiceServiceVerticle extends AbstractVerticle {
     }
 
     private SockJSHandler eventBusHandler() {
+
+//        BridgeOptions options = new BridgeOptions()
+//                .addInboundPermitted(new PermittedOptions().setAddressRegex(".*"))
+//                .setPingTimeout(5000)
+//                .addOutboundPermitted(new PermittedOptions().setAddressRegex(".*"));
+
         BridgeOptions options = new BridgeOptions()
+                .setPingTimeout(15000)
                 .addOutboundPermitted(new PermittedOptions().setAddressRegex("session\\.[0-9]+"));
+
+        /*
+        String COLLAB_SERVER_URL = "http://localhost:8080/js";
+
+        SockJSHandlerOptions sockJSHandlerOptions = new SockJSHandlerOptions();
+        String sockjsUrl = COLLAB_SERVER_URL + "/" + SOCKJS_0_3_4_MIN_JS;
+
+        logger.info(" SOCKJSURL {}", sockjsUrl);
+
+        System.out.println("SOCKJSURL: " + sockjsUrl);
+
+        sockJSHandlerOptions.setLibraryURL(sockjsUrl);
+
+//        return SockJSHandler.create(vertx, sockJSHandlerOptions).bridge(options, event -> {
+*/
+
         return SockJSHandler.create(vertx).bridge(options, event -> {
+
             System.out.println(">>>>> Received BridgeEvent: type: " + event.getClass().getCanonicalName());
+
             if (event.type() == BridgeEventType.SOCKET_CREATED) {
                 logger.info(">>>>> A socket was created: " + event.getRawMessage());
             }
+
             event.complete(true);
         });
     }

@@ -1,0 +1,201 @@
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="sockjs-0.3.4.min.js"></script>
+    <script src="js/vertxbus.js"></script>
+</head>
+<style>
+    .box {
+        background-color: #F0F0F0;
+        border: 5px solid blue;
+        width: 400px;
+        height: 300px;
+    }
+
+    .innerbox {
+        overflow: auto;
+        border: 5px solid blue;
+        border-left: 0px;
+        border-right: 0px;
+    }
+
+    body {
+        background-color: #F0F0F0;
+    }
+</style>
+
+<body>
+
+<div id="send" class="box" style="position:absolute;left:0px;top:0px">
+
+    <form onsubmit="return false;">
+        Address:<input type="text" id="sendAddress" value="lesson.server"/><br>
+        Message:<input type="text" id="sendMessage" value="Hello, World!"/><br>
+        Type:<input type="text" id="sendType" value="lessonMetadataSelect"/><br>
+        collaborationToken:<input type="text" id="sendAuthenticationToken" value="bdfb520a940745da99cffd9100f686d1:localhost"/><br>
+        Size:<input type="text" id="messageSize" value="1"/>
+        <input type="button" id="sendButton" value="Send message"/>
+    </form>
+
+    <br>
+    Sent messages:<br>
+
+    <div id="sent" class="innerbox" style="width: 400px; height: 205px;">
+    </div>
+</div>
+
+<div id="subscribe" class="box" style="position:absolute;left:450px;top:0px">
+
+    <form onsubmit="return false;">
+        Address:<input type="text" id="subscribeAddress" value="lesson.221786ddfd6846b896873fac4f544d59"/>
+        <input type="button" id="subscribeButton" value="Subscribe"/>
+    </form>
+
+    <form onsubmit="return false;">
+        Address:<input type="text" id="unSubscribeAddress" value="lesson.221786ddfd6846b896873fac4f544d59"/>
+        <input type="button" id="unSubscribeButton" value="UnSubscribe"/>
+    </form>
+
+    <br>
+    Subscriptions:<br>
+
+    <div id="subscribed" class="innerbox" style="width: 400px; height: 230px;">
+    </div>
+</div>
+
+<br>
+
+<div id="receive" class="box" style="position:absolute;left:0px;top:350px">
+
+    Received messages:<br>
+
+    <div id="received" class="innerbox" style="width: 400px; height: 275px;">
+    </div>
+
+</div>
+
+<div id="status" class="box" style="position:absolute;left:450px;top:350px">
+    Address:<input type="text" id="allowedProtocol" value="websocket"/>
+    <input type="button" id="connectButton" value="Open connection"/><br>
+    <input type="button" id="closeButton" value="Close connection"/><br>
+    Connection Status:&nbsp;
+    <div id="status_info">Not connected</div>
+</div>
+
+<script>
+
+    var eb = null;
+    var handlerMap = new Object();
+
+    function publish(address, message, type, collaborationToken, finalTargetAddress) {
+        if (eb) {
+            var finalMsg = "";
+            var repeat = parseInt($("#messageSize").val());
+            for (var i = 0; i < repeat; i++) {
+                finalMsg = finalMsg + message;
+            }
+            var clientMsg = {};
+            clientMsg.type=type;
+            clientMsg.collaborationToken=collaborationToken;
+            clientMsg.data = JSON.parse(finalMsg);
+            eb.send(address, clientMsg);
+            $('#sent').append($("<code>").text("Address:" + address + " Message:" + finalMsg));
+            $('#sent').append($("</code><br>"));
+        }
+    }
+
+    function subscribe(address) {
+        if (eb) {
+            handler = function (msg, replyTo) {
+                var jsonStr = JSON.stringify(msg);
+                $('#received').append("Address:" + address + " Message:" + jsonStr + "<br>");
+                if(replyTo){
+                    var replyMsg = {};
+
+                    replyMsg.msgId =msg.msgId;
+                    if(address.indexOf('.user.')){
+                        var addrArray = address.split('.');
+                        replyMsg.from = addrArray[2];
+                    }
+                    replyTo.call(this,replyMsg);
+                }
+                $('#received').scrollTop($('#received')[0].scrollHeight);
+            };
+            eb.registerHandler(address, handler);
+            //Keep track of our handlers
+            handlerMap[address] = handler;
+
+            $('#subscribed').append($("<code>").text("Address:" + address));
+            $('#subscribed').append($("</code><br>"));
+        }
+    }
+
+    function unSubscribe(address) {
+        if (eb) {
+            handler = handlerMap[address];
+            if (handler) {
+                eb.unregisterHandler(address, handler);
+                handlerMap[address] = null;
+                $('#subscribed').append($("<code>").text("Unscribed Address:" + address));
+                $('#subscribed').append($("</code><br>"));
+            }
+        }
+    }
+
+    function closeConn() {
+        if (eb) {
+            eb.close();
+        }
+    }
+
+    function openConn() {
+        if (!eb) {
+            var sockJSurl = document.URL.replace("lessonEventbus.html", "eventbus")  ;
+            console.log('Opeing connection to ' + sockJSurl);
+            var protocol = $("#allowedProtocol").val();
+
+            var protocols_whitelist = [protocol];
+            var options ={};
+            options.protocols_whitelist =protocols_whitelist;
+            eb = new vertx.EventBus(sockJSurl,options);
+
+            eb.onopen = function () {
+                $("#status_info").text("Connected");
+            };
+
+            eb.onclose = function () {
+                $("#status_info").text("Not connected");
+                eb = null;
+            };
+
+
+        }
+    }
+
+    $(document).ready(function () {
+        $("#sendButton").click(function () {
+            publish($("#sendAddress").val(), $("#sendMessage").val(),  $("#sendType").val(),  $("#sendAuthenticationToken").val(),  $("#sendFinalTargetAddress").val());
+        });
+
+        $("#subscribeButton").click(function () {
+            subscribe($("#subscribeAddress").val());
+        });
+
+        $("#unSubscribeButton").click(function () {
+            unSubscribe($("#unSubscribeAddress").val());
+        });
+
+        $("#closeButton").click(function () {
+            closeConn();
+        });
+
+        $("#connectButton").click(function () {
+            openConn();
+        });
+    });
+
+</script>
+
+</body>
+</html>

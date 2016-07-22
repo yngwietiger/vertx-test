@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Voice Commands 3</title>
+
+    <!--<script src="//cdn.jsdelivr.net/sockjs/0.3.4/sockjs.min.js"></script>-->
+    <!--<script src="js/vertx-eventbus.js"></script>-->
+    <!--<script src="js/voice-commands.js"></script>-->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="js/sockjs-0.3.4.min.js"></script>
+    <script src="js/vertxbus.js"></script>
+    <script src="js/voice-commands3.js"></script>
+
+</head>
+
+<body onload="init();">
+
+<h3>Websocket Tester</h3>
+<div id="error_message"></div>
+<form>
+
+    <div>
+        <label for="my_host">Hostname:</label>
+        <span id="hostname">$("#hostname").value</span>
+        <input id="my_host" type="text">
+        <input type="button" onclick="setHost();" value="Set Host">
+    </div>
+
+    <div>
+        <label for="my_session">Enter session id:</label>
+        <input id="my_session" type="text">
+        <input type="button" onclick="setSessionId();" value="Set Session">
+    </div>
+
+    <div>
+        <label>Register handler:</label>
+        <input type="button" onclick="registerHandler();" value="Register Handler">
+    </div>
+
+    <br/>
+
+    <div>
+        <label for="my_command">Enter command:</label>
+        <input id="my_command" type="text">
+        <input type="button" onclick="sendCommand();" value="Send Command">
+    </div>
+
+    <br/>
+
+    <div>
+        Command List:
+        <textarea id="feed" rows="4" cols="50" readonly></textarea>
+    </div>
+
+    Last command:
+    <span id="last_command"></span>
+
+</form>
+
+</body>
+
+</html>

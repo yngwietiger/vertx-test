@@ -1,19 +1,27 @@
 var session_id = 1;
  //var host = '50.17.171.189';
 var host = 'localhost';
-
+//var host = '10.20.3.92';
 
 function init() {
     // loadCurrentPrice();
-    registerHandlerForUpdateCurrentPriceAndFeed();
+    //registerHandlerForUpdateCurrentPriceAndFeed();
 };
 
-function registerHandlerForUpdateCurrentPriceAndFeed() {
-    var eventBus = new EventBus('http://' + host + ':8080/eventbus');
+
+function registerHandler() {
+
+    var options = {};
+    //options.protocols_whitelist = ["websocket"];
+
+    var eventBus = new vertx.EventBus('http://' + host + ':8080/eventbus', options);
     eventBus.onopen = function () {
-        eventBus.registerHandler('session.' + session_id, function (error, message) {
-            document.getElementById('last_command').innerHTML = JSON.parse(message.body).command;
-            document.getElementById('feed').value += 'Last Command: ' + JSON.parse(message.body).command + '\n';
+        eventBus.registerHandler('session.' + session_id, function (message, replyTo) {
+
+            console.log("got message from vertx: " + message);
+
+            document.getElementById('last_command').innerHTML = JSON.parse(message).command;
+            document.getElementById('feed').value += 'Last Command: ' + JSON.parse(message).command + '\n';
         });
     }
 };
@@ -38,3 +46,13 @@ function sendCommand() {
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify({command: newCommand}));
 };
+
+function setHost() {
+    host = document.getElementById('my_host').value;
+    $("#hostname").value = host;
+};
+
+function setSessionId() {
+    session_id = document.getElementById('my_session').value;
+};
+
