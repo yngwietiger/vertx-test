@@ -11,10 +11,15 @@ function init() {
 
 function registerHandler() {
 
+    //host = document.getElementById('my_host').value;
+    session_id = document.getElementById('my_session').value;
+
     var options = {};
     //options.protocols_whitelist = ["websocket"];
 
-    var eventBus = new vertx.EventBus('http://' + host + ':8080/eventbus', options);
+    //var eventBus = new vertx.EventBus('http://' + host + ':8080/eventbus', options);
+    var eventBus = new vertx.EventBus('/eventbus', options);
+
     eventBus.onopen = function () {
         eventBus.registerHandler('session.' + session_id, function (message, replyTo) {
 
@@ -42,14 +47,14 @@ function sendCommand() {
             }
         }
     };
-    xmlhttp.open("POST", "http://" + host + ":8080/api/voice/" + session_id);
+    //xmlhttp.open("POST", "http://" + host + ":8080/api/voice/" + session_id);
+    xmlhttp.open("POST", "/api/voice/" + session_id);
     xmlhttp.setRequestHeader("Content-Type", "application/json");
     xmlhttp.send(JSON.stringify({command: newCommand}));
 };
 
 function setHost() {
     host = document.getElementById('my_host').value;
-    $("#hostname").value = host;
 };
 
 function setSessionId() {

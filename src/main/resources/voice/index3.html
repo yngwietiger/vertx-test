@@ -19,27 +19,51 @@
 
 <h3>Websocket Tester</h3>
 <div id="error_message"></div>
+
+<h4>Register Session ID</h4>
+
 <form>
 
-    <div>
-        <label for="my_host">Hostname:</label>
-        <span id="hostname">$("#hostname").value</span>
-        <input id="my_host" type="text">
-        <input type="button" onclick="setHost();" value="Set Host">
-    </div>
+    <!--<div>-->
+        <!--<label for="my_host">Hostname:</label>-->
+        <!--<input id="my_host" type="text">-->
+        <!--&lt;!&ndash;<input type="button" onclick="setHost();" value="Set Host">&ndash;&gt;-->
+    <!--</div>-->
 
     <div>
-        <label for="my_session">Enter session id:</label>
+        <label for="my_session">Session id:</label>
         <input id="my_session" type="text">
-        <input type="button" onclick="setSessionId();" value="Set Session">
+        <!--<input type="button" onclick="setSessionId();" value="Set Session">-->
     </div>
 
     <div>
-        <label>Register handler:</label>
         <input type="button" onclick="registerHandler();" value="Register Handler">
     </div>
 
-    <br/>
+</form>
+
+<h4>Publish Messages</h4>
+
+<form>
+
+    <!--<div>-->
+        <!--<label for="my_host">Hostname:</label>-->
+        <!--<input id="my_host" type="text">-->
+        <!--<input type="button" onclick="setHost();" value="Set Host">-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--<label for="my_session">Session id:</label>-->
+        <!--<input id="my_session" type="text">-->
+        <!--<input type="button" onclick="setSessionId();" value="Set Session">-->
+    <!--</div>-->
+
+    <!--<div>-->
+        <!--<label>Register handler:</label>-->
+        <!--<input type="button" onclick="registerHandler();" value="Register Handler">-->
+    <!--</div>-->
+
+    <!--<br/>-->
 
     <div>
         <label for="my_command">Enter command:</label>
