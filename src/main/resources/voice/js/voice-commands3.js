@@ -25,8 +25,15 @@ function registerHandler() {
 
             console.log("got message from vertx: " + message);
 
-            document.getElementById('last_command').innerHTML = JSON.parse(message).command;
-            document.getElementById('feed').value += 'Last Command: ' + JSON.parse(message).command + '\n';
+            var command = JSON.parse(message).command;
+            var messageJSON = JSON.stringify(JSON.parse(message));          // remove pretty print
+
+            document.getElementById('last_command').innerHTML = message;
+
+            var temp = "[" + new Date().toJSON() + "] - " + messageJSON + "\n";
+            var oldfeed = document.getElementById('feed').value;
+
+            document.getElementById('feed').value = temp + oldfeed;
         });
     }
 };

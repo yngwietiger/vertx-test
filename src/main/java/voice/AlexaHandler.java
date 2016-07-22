@@ -2,6 +2,8 @@ package voice;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
 import com.amazon.speech.json.SpeechletResponseEnvelope;
+import com.amazon.speech.slu.Intent;
+import com.amazon.speech.slu.Slot;
 import com.amazon.speech.speechlet.IntentRequest;
 import com.amazon.speech.speechlet.Session;
 import com.amazon.speech.speechlet.SpeechletRequest;
@@ -77,8 +79,16 @@ public class AlexaHandler {
         if (speechletRequest instanceof IntentRequest) {
 
             IntentRequest intentRequest = (IntentRequest)speechletRequest;
-            String name = intentRequest.getIntent().getName();
+            Intent intent = intentRequest.getIntent();
+
+            String name = intent.getName();
             voiceCommand.setCommand(name);
+
+            if (intent.getSlots() != null) {
+                for (Slot slot : intent.getSlots().values()) {
+                    voiceCommand.getParameters().put(slot.getName(), slot.getValue());
+                }
+            }
         }
 
         String voiceCommandString = "";
