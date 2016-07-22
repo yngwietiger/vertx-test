@@ -2,8 +2,8 @@ package voice;
 
 public class VoiceCommand {
 
-    private final String sessionId;
-    private final String command;
+    private String sessionId;
+    private String command;
 
     public VoiceCommand(String sessionId, String command) {
         this.sessionId = sessionId;
@@ -14,8 +14,16 @@ public class VoiceCommand {
         return sessionId;
     }
 
+    public void setSessionId(String sessionId) {
+        this.sessionId = sessionId;
+    }
+
     public String getCommand() {
         return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
     }
 
     @Override
