@@ -1,7 +1,10 @@
 package voice;
 
 import com.amazon.speech.json.SpeechletRequestEnvelope;
+import com.amazon.speech.json.SpeechletResponseEnvelope;
 import com.amazon.speech.speechlet.Session;
+import com.amazon.speech.speechlet.SpeechletResponse;
+import com.amazon.speech.ui.PlainTextOutputSpeech;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.vertx.ext.web.RoutingContext;
@@ -43,10 +46,30 @@ public class AlexaHandler {
         Session session = requestEnvelope.getSession();
 
         System.out.println("Session ID: " + session.getSessionId());
+        System.out.println("***** Writing message to session 1 !!!!");
 
-        context.vertx().eventBus().publish("session." + session.getSessionId(), context.getBodyAsString());
+        SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
+        SpeechletResponse speechletResponse = new SpeechletResponse();
+        responseEnvelope.setResponse(speechletResponse);
+
+        PlainTextOutputSpeech plainTextOutputSpeech = new PlainTextOutputSpeech();
+        plainTextOutputSpeech.setText("Got it, thanks!");
+
+        speechletResponse.setOutputSpeech(plainTextOutputSpeech);
+        speechletResponse.setShouldEndSession(true);
+
+        String responseString = "";
+        try {
+            objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseEnvelope);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return;
+        }
+
+        context.vertx().eventBus().publish("session.1", context.getBodyAsString());
         context.response()
                 .setStatusCode(200)
+                .write(responseString)
                 .end();
     }
 
