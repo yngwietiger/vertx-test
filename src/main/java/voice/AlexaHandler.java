@@ -56,6 +56,7 @@ public class AlexaHandler {
         SpeechletResponseEnvelope responseEnvelope = new SpeechletResponseEnvelope();
         SpeechletResponse speechletResponse = new SpeechletResponse();
         responseEnvelope.setResponse(speechletResponse);
+        responseEnvelope.setVersion("1.0");
 
         PlainTextOutputSpeech plainTextOutputSpeech = new PlainTextOutputSpeech();
         plainTextOutputSpeech.setText("Got it, thanks!");
@@ -65,7 +66,7 @@ public class AlexaHandler {
 
         String responseString = "";
         try {
-            objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseEnvelope);
+            responseString = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(responseEnvelope);
         } catch (IOException e) {
             e.printStackTrace();
             return;
@@ -95,10 +96,10 @@ public class AlexaHandler {
         HttpServerResponse response = context.response();
         response.setStatusCode(200);
         response.headers()
-                .add("Content-Length", "" + voiceCommandString.length())
+                .add("Content-Length", "" + responseString.length())
                 .add("Content-Type", "application/json");
 
-        response.write(voiceCommandString);
+        response.write(responseString);
         response.end();
     }
 

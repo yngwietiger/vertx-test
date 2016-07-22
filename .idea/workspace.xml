@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f2b6efec-c7a8-41ba-8f61-156ed320a89b" name="Default" comment="change host">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/voice/AlexaHandler.java" afterPath="$PROJECT_DIR$/src/main/java/voice/AlexaHandler.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/voice/VoiceCommand.java" afterPath="$PROJECT_DIR$/src/main/java/voice/VoiceCommand.java" />
     </list>
     <ignored path="my-first-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +52,8 @@
       <file leaf-file-name="AlexaHandler.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/voice/AlexaHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73913044">
-              <caret line="101" column="23" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.5043478">
+              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -1244,12 +1243,12 @@
       <workItem from="1469065991623" duration="190000" />
       <workItem from="1469066222588" duration="3388000" />
       <workItem from="1469107990931" duration="11407000" />
-      <workItem from="1469191871894" duration="15098000" />
+      <workItem from="1469191871894" duration="15309000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44249000" />
+    <option name="totallyTimeSpent" value="44460000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1961" y="26" width="1867" height="1038" extended-state="0" />
@@ -1714,8 +1713,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/voice/AlexaHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73913044">
-          <caret line="101" column="23" selection-start-line="101" selection-start-column="23" selection-end-line="101" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.5043478">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding />
         </state>
       </provider>
